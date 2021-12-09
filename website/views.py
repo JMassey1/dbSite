@@ -1,6 +1,7 @@
+from . import engine
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
-from sqlalchemy import engine, text
+from sqlalchemy import text
 
 views = Blueprint('views', __name__)
 
@@ -15,7 +16,8 @@ def home():
                 text("SELECT Songs.songName FROM Songs WHERE username = :username"),
                 {"username": username}
             )
+            print(songTable.first())
     else:
-        table = []
+        songTable = []
 
-    return render_template("home.html", user=current_user, table=table)
+    return render_template("home.html", user=current_user, table=songTable)
