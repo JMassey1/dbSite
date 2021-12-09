@@ -1,0 +1,5 @@
+flask~=2.0.2
+flask-sqlalchemy
+flask-login
+Werkzeug~=2.0.2
+SQLAlchemy~=1.4.27
