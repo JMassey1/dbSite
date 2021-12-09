@@ -24,7 +24,6 @@ class User(Base, UserMixin):
                 {"User_ID": self.User_ID}
             )
         temp = results.first()[0]
-        print(temp)
         return bool(temp)
 
 
