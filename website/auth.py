@@ -2,6 +2,7 @@ from . import engine, session, User
 from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import create_engine, table, column, select, update, insert, text
 
 auth = Blueprint('auth', __name__)
 
@@ -41,6 +42,7 @@ def signUp():
         email = request.form.get('email')
         password = request.form.get('password')
         passwordCheck = request.form.get('passwordCheck')
+        userType = request.form['userType']
 
         with engine.connect() as conn:
             userExists = conn.execute(
