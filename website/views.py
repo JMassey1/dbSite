@@ -1,14 +1,18 @@
 from . import engine
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 from sqlalchemy import text
 
 views = Blueprint('views', __name__)
 
 
-@views.route('/')
+@views.route('/', methods=['GET','POST'])
 @login_required
 def home():
+    if request.method == 'POST':
+        pass
+
+
     if current_user.isArtist():
         with engine.connect() as conn:
             songTableP = conn.execute(
